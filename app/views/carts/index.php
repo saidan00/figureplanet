@@ -81,45 +81,6 @@
 
         <!-- Total -->
         <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
-          <h5 class="m-text20 p-b-24">
-            Cart Totals
-          </h5>
-
-          <!--  -->
-          <div class="flex-w flex-sb-m p-b-12">
-            <span class="s-text18 w-size19 w-full-sm">
-              Subtotal:
-            </span>
-
-            <span class="m-text21 w-size20 w-full-sm" data-name="sub-total">
-              $<?php echo $data["subTotal"]; ?>
-            </span>
-          </div>
-
-          <!--  -->
-          <div class="flex-w flex-sb bo10 p-t-15 p-b-20">
-            <span class="s-text18 w-size19 w-full-sm">
-              Shipping:
-            </span>
-
-            <span class="m-text21 w-size20 w-full-sm" data-name="shipping">
-              $<?php echo $data["shipping"]; ?>
-            </span>
-          </div>
-
-          <!--  -->
-          <div class="flex-w flex-sb-m p-t-26 p-b-30">
-            <span class="m-text22 w-size19 w-full-sm">
-              Total:
-            </span>
-
-            <span class="m-text21 w-size20 w-full-sm">
-              <span class="m-text21 w-size20 w-full-sm" data-name="total">
-                $<?php echo $data["total"]; ?>
-              </span>
-            </span>
-          </div>
-
           <div class="size15 trans-0-4">
             <!-- Button -->
             <a href="<?php echo URLROOT; ?>/carts/checkout">
