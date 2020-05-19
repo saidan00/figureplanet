@@ -1,0 +1,38 @@
+.linedivide1 {
+  display: block;
+  height: 20px;
+  width: 1px;
+  background-color: #e5e5e5;
+  margin-left: 23px;
+  margin-right: 23px;
+  margin-top: 5px;
+}
+
+/* products table sort box */
+.input-box {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  height: 30px;
+  outline: none;
+  width: 100%;
+}
+
+/* custom input type number */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.my-table td {
+  padding: 0 5px;
+}
+.my-table td:nth-child(odd) {
+  text-align: right;
+}
