@@ -1,6 +1,6 @@
 <?php require_once APPROOT . "/views/inc/header.php"; ?>
   <!-- Title Page -->
-  <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(<?php echo URLROOT; ?>/images/heading-pages-02.jpg);">
+  <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(<?php echo URLROOT; ?>/images/master-slide1.png);">
     <h2 class="l-text2 t-center">Figure Planet</h2>
     <p class="m-text13 t-center">New Arrivals Figure 2019</p>
   </section>
