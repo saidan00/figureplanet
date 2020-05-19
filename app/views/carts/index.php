@@ -1,7 +1,7 @@
 <?php require_once APPROOT . "/views/inc/header.php"; ?>
 
 <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background: #212529;">
+<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(<?php echo URLROOT; ?>/images/master-slide1.png);">
   <h2 class="l-text2 t-center">
     Cart
   </h2>
