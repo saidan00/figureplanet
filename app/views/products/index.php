@@ -149,62 +149,39 @@
 
           <!-- Pagination -->
           <div class="pagination flex-m flex-w p-t-26">
-          <?php if ($data["totalPages"] < 8) : ?>
 
-            <?php for ($i = 1; $i <= $data["totalPages"]; $i++) : ?>
-              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
+          <?php if ($data["totalPages"] <= 1) : ?>
+
+            <?php elseif ($data["currentPage"] < 2 && $data["currentPage"] < $data["totalPages"]) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo "<<"; ?></a>
+                <?php for ($i = $data["currentPage"]; $i <= $data["currentPage"] + 2; $i++) : ?>
+                  <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
+            <?php endfor; ?>
+            <?php for ($i = $data["currentPage"] ; $i <= $data["currentPage"]; $i++) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"])  ?>"><?php echo ">>"; ?></a>
             <?php endfor; ?>
 
-          <?php elseif ($data["currentPage"] > 3 && $data["currentPage"] < $data["totalPages"]-2) : ?>
 
-            <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo 1; ?></a>
 
-            <span>...</span>
-
+          <?php elseif ($data["currentPage"] > 1 && $data["currentPage"] < $data["totalPages"]) : ?>
+            <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo "<<"; ?></a>
             <?php for ($i = $data["currentPage"] - 1; $i <= $data["currentPage"] + 1; $i++) : ?>
               <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
             <?php endfor; ?>
-
-            <span>...</span>
-
-            <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo $data["totalPages"]; ?></a>
-
-          <?php elseif ($data["currentPage"] == 3) : ?>
-
-           <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo 1; ?></a>
-
-            <?php for ($i = $data["currentPage"] - 1; $i <= $data["currentPage"] + 1; $i++) : ?>
-              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
+            <?php for ($i = $data["currentPage"] ; $i <= $data["currentPage"]; $i++) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"])  ?>"><?php echo ">>"; ?></a>
             <?php endfor; ?>
 
-            <span>...</span>
 
-            <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo $data["totalPages"]; ?></a>
-
-          <?php elseif ($data["currentPage"] == $data["totalPages"] - 2) : ?>
-
-           <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo 1; ?></a>
-
-            <span>...</span>
-
-            <?php for ($i = $data["currentPage"] - 1; $i <= $data["currentPage"] + 1; $i++) : ?>
+            <?php elseif ($data["currentPage"] = $data["totalPages"]) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo "<<"; ?></a>
+            <?php for ($i = $data["currentPage"] -2 ; $i <= $data["currentPage"]; $i++) : ?>
               <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
             <?php endfor; ?>
-
-            <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4"><?php echo $data["totalPages"]; ?></a>
-
+            <?php for ($i = $data["currentPage"] ; $i <= $data["currentPage"]; $i++) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $data["totalPages"]; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"])  ?>"><?php echo ">>"; ?></a>
+            <?php endfor; ?>
           <?php else : ?>
-
-            <?php for ($i = 1; $i <= 3; $i++) : ?>
-              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
-            <?php endfor; ?>
-
-            <span>...</span>
-
-            <?php for ($i = $data["totalPages"] - 2; $i <= $data["totalPages"]; $i++) : ?>
-              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
-            <?php endfor; ?>
-
           <?php endif; ?>
           </div>
         </div>
