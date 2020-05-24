@@ -171,10 +171,10 @@
         $subTotal += $cart[$i]->price * $cart[$i]->quantity;
       }
       if($subTotal <= 100) {
-        $shipping = 0;
+        $shipping = 10;
       }
       else {
-        $shipping = 10;
+        $shipping = 0;
       } 
       $total = $subTotal + $shipping;
 

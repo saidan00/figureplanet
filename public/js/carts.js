@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   // button apply coupon
   $("#btn-coupon").click(function() {
-    swal("", "Chưa có làm :(((", "error");
+    swal("", "Invalid Code", "error");
   });
 
 
