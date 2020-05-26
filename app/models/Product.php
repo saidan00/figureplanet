@@ -233,10 +233,11 @@
 
     // Update product
     public function updateProduct($product) {
-      $this->db->query("UPDATE products SET productName = :productName, price = :price, categoryID = :categoryID, description = :description, available = :available WHERE sku = :sku");
+      $this->db->query("UPDATE products SET productName = :productName, price = :price, quantity = :quantity, categoryID = :categoryID, description = :description, available = :available WHERE sku = :sku");
 
       $this->db->bind(":productName", $product->productName);
       $this->db->bind(":price", $product->price);
+      $this->db->bind(":quantity", $product->quantity);
       $this->db->bind(":categoryID", $product->category_id);
       $this->db->bind(":description", $product->description);
       $this->db->bind(":available", $product->available);

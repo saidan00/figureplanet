@@ -41,20 +41,20 @@
 
         // Check if product is out of stock
         $productQuantity = $this->productModel->getProductQuantity($productSku);
-        if ($productQuantity == 0) {
-          $data["status"] = 'out_of_stock';
-          echo json_encode($data);
-          die();
-        } elseif ($productQuantity - $quantity < 0) {
-          $data["status"] = 'less_than_required';
-          echo json_encode($data);
-          die();
-        }
+        // if ($productQuantity == 0) {
+        //   $data["status"] = 'out_of_stock';
+        //   echo json_encode($data);
+        //   die();
+        // } elseif ($productQuantity - $quantity < 0) {
+        //   $data["status"] = 'less_than_required';
+        //   echo json_encode($data);
+        //   die();
+        // }
 
         if ($this->productModel->getProductBySKU($productSku)) {
           // If product found
           $this->cartModel->addToCart($userId, $productSku, $quantity);
-          $this->productModel->updateProductQuantity($productSku, $productQuantity - $quantity);
+          // $this->productModel->updateProductQuantity($productSku, $productQuantity - $quantity);
         } else {
           $data["status"] = false;
         }
@@ -104,26 +104,26 @@
           $productQuantity = $this->productModel->getProductQuantity($productSku);
 
           // Get current quantity of product in cart
-          $currentCartQuantity = $this->cartModel->getCartQuantity($userId, $productSku);
+          // $currentCartQuantity = $this->cartModel->getCartQuantity($userId, $productSku);
 
           // Reset product quantity
-          $this->productModel->updateProductQuantity($productSku, $productQuantity + $currentCartQuantity);
+          // $this->productModel->updateProductQuantity($productSku, $productQuantity + $currentCartQuantity);
 
           // Get product quantity after reset
-          $productQuantity = $this->productModel->getProductQuantity($productSku);
+          // $productQuantity = $this->productModel->getProductQuantity($productSku);
 
           // Check if product is enough
-          if ($productQuantity - $quantity < 0) {
-            $data['status'] = 'less_than_required';
-            echo json_encode($data);
-            die();
-          }
+          // if ($productQuantity - $quantity < 0) {
+          //   $data['status'] = 'less_than_required';
+          //   echo json_encode($data);
+          //   die();
+          // }
 
           // Update cart
           $this->cartModel->updateCart($userId, $productSku, $quantity);
 
           // Update product quantity
-          $this->productModel->updateProductQuantity($productSku, $productQuantity - $quantity);
+          // $this->productModel->updateProductQuantity($productSku, $productQuantity - $quantity);
         } else {
           $data = array(
             "status" => false
@@ -143,7 +143,7 @@
           //Reset product quantity
           $quantity = $this->cartModel->getCartQuantity($userId, $productSku);
           $productQuantity = $this->productModel->getProductQuantity($productSku);
-          $this->productModel->updateProductQuantity($productSku, $productQuantity + $quantity);
+          // $this->productModel->updateProductQuantity($productSku, $productQuantity + $quantity);
 
           $this->cartModel->removeFromCart($userId, $productSku);
 
