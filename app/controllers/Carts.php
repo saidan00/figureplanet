@@ -167,15 +167,16 @@
       $cart = $this->cartModel->getCartByUserId($userId);
       $totalCart = count($cart);
       $subTotal = 0;
+
       for ($i = 0; $i < $totalCart; $i++) {
         $subTotal += $cart[$i]->price * $cart[$i]->quantity;
       }
-      if($subTotal <= 100) {
+
+      $shipping = 0;
+      if ($subTotal < 100) {
         $shipping = 10;
       }
-      else {
-        $shipping = 0;
-      } 
+
       $total = $subTotal + $shipping;
 
       // Init data

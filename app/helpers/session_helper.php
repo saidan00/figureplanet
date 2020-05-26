@@ -2,7 +2,6 @@
   session_name("FIGUREPLANET");
   session_start();
   
-
   // Flash message helper
   // Exp: flash("register_success", "You are now registered")
   // Display in view: echo flash("register_success");
@@ -31,6 +30,7 @@
       return false;
     }
   }
+
   function isAdmin() {
     if (isset($_SESSION["user_id"]) && $_SESSION["user_role"] == "admin") {
       return true;

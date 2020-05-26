@@ -42,15 +42,6 @@
               </div>
 
               <div class="form-group">
-                <label for="email">Email <span class="text-danger small font-weight-bold">*</span></label>
-                <div class="bo4">
-                  <input type="text" name="email" class="sizefull s-text7 p-l-22 p-r-22 form-control form-control-lg<?php echo (!empty($data["phone_err"])) ? " is-invalid" : ""; ?>" value="<?php echo $data["user"]->email; ?>" placeholder="Email">
-                </div>
-                <span class="text-danger small"><?php echo $data["phone_err"]; ?></span>
-              </div>
-              
-
-              <div class="form-group">
                 <label for="address">Address <span class="text-danger small font-weight-bold">*</span></label>
                 <div class="bo4">
                   <input type="text" name="address" class="sizefull s-text7 p-l-22 p-r-22 form-control form-control-lg<?php echo (!empty($data["address_err"])) ? " is-invalid" : ""; ?>" value="<?php echo $data["user"]->address; ?>" placeholder="Address">
@@ -62,8 +53,8 @@
                 <label for="payment">Payment <span class="text-danger small font-weight-bold">*</span></label>
                 <div>
                   <input type="radio" name="payment" value="cod" checked> <span class="small text-secondary">COD</span><br>
-                  <input type="radio" name="payment" value="bank-transfer"> <span class="small text-secondary">Bank Transfer(developing)</span><br>
-                  <input type="radio" name="payment" value="credit-card"> <span class="small text-secondary">Credit Card(developing)</span>
+                  <input type="radio" name="payment" value="bank-transfer" disabled> <span class="small text-secondary">Bank Transfer (developing)</span><br>
+                  <input type="radio" name="payment" value="credit-card" disabled> <span class="small text-secondary">Credit Card (developing)</span>
                 </div>
                 <span class="text-danger small"><?php echo $data["payment_err"]; ?></span>
               </div>

@@ -186,7 +186,7 @@
 
               <div class="w-size2 p-t-25">
                 <!-- Button -->
-                <a href="<?php echo URLROOT; ?>/users/login" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+                <a href="<?php echo URLROOT; ?>/users/login" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" <?php if (isLoggedIn()) echo "hidden" ?>>
                   Sign Up
                 </a>
               </div>
