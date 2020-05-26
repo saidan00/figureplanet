@@ -8,7 +8,7 @@
 
   // App Root
   define("APPROOT", dirname(__FILE__ , 2));
-  // URL Root. URL maybe look like this: http://localhost/jaysghmvc
+  // URL Root. URL maybe look like this: http://localhost/figureplanet
   define("URLROOT", "http://localhost/figureplanet");
   // Site Name
   define("SITENAME", "Figure Planet");

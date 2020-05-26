@@ -64,7 +64,7 @@
         </div>
 
         <!--  -->
-        <div class="p-t-33 p-b-60">
+        <div class="add-product p-t-33 p-b-60">
           <div class="flex-r-m flex-w p-t-10">
             <div class="w-size16 flex-m flex-w">
               <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
