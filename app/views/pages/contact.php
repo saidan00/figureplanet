@@ -1,6 +1,6 @@
 <?php require_once APPROOT . "/views/inc/header.php"; ?>
   <!-- Title Page -->
-  <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(<?php echo URLROOT; ?>/images/heading-pages-06.jpg);">
+  <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(<?php echo URLROOT; ?>/images/master-slide3.png);">
     <h2 class="l-text2 t-center">
       Contact
     </h2>
