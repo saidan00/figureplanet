@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 23, 2020 lúc 07:11 AM
+-- Thời gian đã tạo: Th5 20, 2020 lúc 08:04 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_sku`, `quantity`, `created_at`) VALUES
-(18, 2, 'W3F5CB', 4, '2019-07-14 21:58:54');
+(18, 2, 'W3F5CB', 4, '2019-07-14 21:58:54'),
+(30, 7, '8L7D5F', 8, '2020-05-19 22:26:05');
 
 -- --------------------------------------------------------
 
@@ -365,7 +366,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`

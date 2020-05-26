@@ -282,7 +282,7 @@
               <div class="block2-img wrap-pic-w of-hidden pos-relative">
                 <img src="<?php echo URLROOT; ?>/images/nendoroid/2ZDFBE/2ZDFBE_01.jpg" alt="IMG-PRODUCT">
 
-                <div class="block2-overlay trans-0-4" data-sku="<?php echo $data["products"][$i]->sku; ?>">
+                <div class="block2-overlay trans-0-4">
                   <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
                     <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
                     <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
