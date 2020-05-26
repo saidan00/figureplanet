@@ -49,7 +49,7 @@
           // User found
         } else {
           // User not found
-          $data["email_err"] = "Email doesn't exist";
+          $data["password_err"] = "Email or password is incorrect";
           $validated = false;
         }
 
@@ -62,13 +62,21 @@
             die();
           }
 
+          // Check if admin logged in by this link
+          $user = $this->userModel->getUserByEmail($data["email"]);
+          if ($user->role != "user") {
+            $data["password_err"] = "Email or password is incorrect";
+            $this->view("users/login", $data);
+            die();
+          }
+
           // Validated
           // Check and set logged in user
           $loggedInUser = $this->userModel->login($data);
           if ($loggedInUser) {
             $this->createUserSession($loggedInUser);
           } else {
-            $data["password_err"] = "Password incorrect";
+            $data["password_err"] = "Email or password is incorrect";
             $this->view("users/login", $data);
           }
         } else {
@@ -87,6 +95,11 @@
         // Load view
         $this->view("users/login", $data);
       }
+    }
+
+    // function login for admin
+    public function nGMcm7c4Cx($email, $password) {
+      
     }
 
     public function register() {
