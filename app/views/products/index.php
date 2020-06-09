@@ -152,6 +152,12 @@
 
           <?php if ($data["totalPages"] <= 1) : ?> <!-- nếu 1 trang thì không cần hiển thị phân trang -->
 
+          <?php elseif ($data["totalPages"] < 3) : ?>
+
+            <?php for ($i = 1; $i <= 2; $i++) : ?>
+              <a data-page="<?php echo $i; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo $i; ?>" class="item-pagination flex-c-m trans-0-4<?php if ($i == $data["currentPage"]) echo ' active-pagination'; ?>"><?php echo $i; ?></a>
+            <?php endfor; ?>
+
           <?php elseif ($data["currentPage"] == 1) : ?>
             <a data-page="<?php echo 1; ?>" href="<?php echo URLROOT; ?>/products/search/<?php echo $data["pagination"]; ?>/<?php echo 1; ?>" class="item-pagination flex-c-m trans-0-4">&lt;&lt;</a>
 
