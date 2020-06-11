@@ -23,6 +23,17 @@
       }
     }
 
+    // Get user by email
+    public function getUserByEmail($email) {
+      $this->db->query("SELECT *, users.id user_id, roles.id role_id, roles.role FROM users JOIN roles ON users.role_id = roles.id WHERE users.email = :email");
+
+      // Bind value
+      $this->db->bind(":email", $email);
+
+      $row = $this->db->single();
+      return $row;
+    }
+
     // Register user
     public function register($data) {
       // default account role
