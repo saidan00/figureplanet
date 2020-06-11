@@ -5,7 +5,7 @@
     <h4 class="header-title">Edit product</h4>
     <span><a href="<?php echo URLROOT . "/products/product/" . $data["product"]->sku; ?>" target="_blank">To product page &gt;&gt;</a></span>
     <?php flash("update_success"); ?>
-    <form name=" edit-product" method="post" action="<?php echo URLROOT; ?>/admins/editProduct/<?php echo $data["product"]->sku; ?>">
+    <form name=" edit-product" method="post" action="<?php echo URLROOT; ?>/admins/editProduct/<?php echo $data["product"]->sku; ?>" enctype="multipart/form-data">
       <div class="row">
         <div class="form-group col-sm-3">
           <label for="sku" class="col-form-label">SKU</label>
@@ -51,6 +51,14 @@
           <label for="description" class="col-form-label">Description <span class="text-danger small font-weight-bold">*</span></label>
           <textarea class="form-control<?php echo (!empty($data["description_err"])) ? " is-invalid" : ""; ?>" name="description"><?php echo $data["product"]->description; ?></textarea>
           <span class="text-danger small"><?php echo $data["description_err"]; ?></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <label for="description" class="col-form-label">Image <span class="text-danger small font-weight-bold">*</span></label>
+          <input type="file" class="form-control-file" name="fileImg">
+          <span class="text-danger small"><?php echo $data["file_err"]; ?></span>
         </div>
       </div>
 

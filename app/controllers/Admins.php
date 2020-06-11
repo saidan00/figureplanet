@@ -214,6 +214,17 @@ class Admins extends Controller {
         die("Something went wrong");
       }
 
+      // Set root directory of public folder and set images directory
+      $publicRoot = str_replace("app", "public", APPROOT);
+
+      // Get file properties
+      $fileName = $_FILES['fileImg']['name'];
+      $fileTempName = $_FILES['fileImg']['tmp_name'];
+      $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+      // Set where files to be stored
+      $fileStore = $publicRoot . '/' . $product->imgPath;
+
       // Get form values
       $product->productName = trim($_POST["product-name"]);
       $product->price = trim($_POST["price"]);
@@ -234,7 +245,8 @@ class Admins extends Controller {
         "name_err" => "",
         "price_err" => "",
         "quantity_err" => "",
-        "description_err" => ""
+        "description_err" => "",
+        "file_err" => ""
       );
 
       // Check if no error occured
@@ -305,7 +317,16 @@ class Admins extends Controller {
         die("Something went wrong");
       }
 
+      // check file extension
+      if ($fileExtension != "jpg" && $fileExtension != "jpeg" && $fileExtension != "png") {
+        $data["file_err"] = "Only accept file in .jpg, .jpeg, .png extension";
+        $validated = false;
+      }
+
       if ($validated) {
+        // move file to created folder
+        move_uploaded_file($fileTempName, $fileStore);
+
         //Validated
         $this->productModel->updateProduct($data["product"]);
 
@@ -336,7 +357,8 @@ class Admins extends Controller {
         "name_err" => "",
         "price_err" => "",
         "quantity_err" => "",
-        "description_err" => ""
+        "description_err" => "",
+        "file_err" => ""
       );
 
       $this->view("admins/editProduct", $data);
