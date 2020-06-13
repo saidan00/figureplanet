@@ -12,10 +12,23 @@ class Admins extends Controller {
   }
 
   public function index() {
-    redirect("admins/products");
+    if (isAdmin()) {
+      redirect("admins/users");
+    } else if (isManager()) {
+      redirect("admins/products");
+    } else {
+      redirect("admins/products");
+    }
   }
 
+  // for manager
   public function products() {
+    // check for manager
+    if (!isManager()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     $products = $this->productModel->adminGetAllProducts();
     $totalProducts = count($products);
     $data = array(
@@ -25,7 +38,15 @@ class Admins extends Controller {
     $this->view("admins/products", $data);
   }
 
+
+  // add product, for manager
   public function addProduct() {
+    // check for manager
+    if (!isManager()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       // Sanitize POST data
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -126,9 +147,17 @@ class Admins extends Controller {
         die("Something went wrong");
       }
 
-      // check file extension
-      if ($fileExtension != "jpg" && $fileExtension != "jpeg" && $fileExtension != "png") {
-        $data["file_err"] = "Only accept file in .jpg, .jpeg, .png extension";
+      // check if there is a file uploaded,  UPLOAD_ERR_NO_FILE Value: 4; No file was uploaded.
+      if ($_FILES['fileImg']['error'] == 4) {
+        $data["file_err"] = "Please choose an image for product";
+        $validated = false;
+      } else if ($fileExtension != "jpg" && $fileExtension != "jpeg" && $fileExtension != "png") {
+        // check file extension
+        $data["file_err"] = "Only accept file with .jpg, .jpeg, .png extension";
+        $validated = false;
+      } else if ($_FILES['fileImg']['error'] == 1) {
+        // check file exceeds max size
+        $data["file_err"] = "Uploaded file must be less than 5M";
         $validated = false;
       }
 
@@ -199,8 +228,14 @@ class Admins extends Controller {
     }
   }
 
-  // edit product
+  // edit product, for mananger
   public function editProduct($productSku = "") {
+    // check for manager
+    if (!isManager()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Process form
 
@@ -317,10 +352,16 @@ class Admins extends Controller {
         die("Something went wrong");
       }
 
-      // check file extension
-      if ($fileExtension != "jpg" && $fileExtension != "jpeg" && $fileExtension != "png") {
-        $data["file_err"] = "Only accept file in .jpg, .jpeg, .png extension";
-        $validated = false;
+      // check if there is a file uploaded,  UPLOAD_ERR_NO_FILE Value: 4; No file was uploaded.
+      if ($_FILES['fileImg']['size'] != 0 || $_FILES['fileImg']['error'] != 4) {
+        // check file extension
+        if ($fileExtension != "jpg" && $fileExtension != "jpeg" && $fileExtension != "png") {
+          $data["file_err"] = "Only accept file with .jpg, .jpeg, .png extension";
+          $validated = false;
+        } else if ($_FILES['fileImg']['error'] == 1) {
+          $data["file_err"] = "Uploaded file must be less than 5M";
+          $validated = false;
+        }
       }
 
       if ($validated) {
@@ -365,8 +406,14 @@ class Admins extends Controller {
     }
   }
 
-  // Users page
+  // Users page, for admin
   public function users() {
+    // check for admin
+    if (!isAdmin()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     $users = $this->userModel->adminGetAllUsers();
     $totalUsers = count($users);
     $data = array(
@@ -376,8 +423,14 @@ class Admins extends Controller {
     $this->view("admins/users", $data);
   }
 
-  // Edit user
+  // Edit user, for admin
   public function editUser($userId) {
+    // check for admin
+    if (!isAdmin()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     // Get user
     $user = $this->userModel->getUserById($userId);
     if (!$user) {
@@ -438,8 +491,13 @@ class Admins extends Controller {
     }
   }
 
-  // Orders pages
+  // Orders pages, for manager
   public function orders() {
+    // check for manager
+    if (!isManager()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
     $orders = $this->orderModel->adminGetAllOrders();
     $totalOrders = count($orders);
 
@@ -454,8 +512,14 @@ class Admins extends Controller {
     $this->view("admins/orders", $data);
   }
 
-  // Order details
+  // Order details, for manager
   public function orderDetails($orderCode = '') {
+    // check for manager
+    if (!isManager()) {
+      $this->view("pages/pagenotfound");
+      die();
+    }
+
     // check if order code exist
     $order = $this->orderModel->getOrderByCode($orderCode);
     if (!$order) {
@@ -512,6 +576,201 @@ class Admins extends Controller {
       );
 
       $this->view("admins/orderDetails", $data);
+    }
+  }
+
+  // add user, for admin
+  public function addUser() {
+    // Check for admin
+    if (!isAdmin()) {
+      redirect("pages/pagenotfound");
+      die();
+    }
+
+    // Check for post
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      // Process form
+
+      // Sanitize POST data
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      // Get all roles
+      $roles = $this->userModel->adminGetAllRoles();
+
+      // Init data
+      $data = array(
+        "firstname" => trim($_POST["firstname"]),
+        "lastname" => trim($_POST["lastname"]),
+        "email" => strtolower(trim($_POST["email"])),
+        "password" => trim($_POST["password"]),
+        "confirm_password" => trim($_POST["confirm_password"]),
+        "gender" => trim($_POST["gender"]),
+        "phone" => trim($_POST["phone"]),
+        "address" => trim($_POST["address"]),
+        "roleid" => trim($_POST["roleid"]),
+        "roles" => $roles,
+        "firstname_err" => "",
+        "lastname_err" => "",
+        "email_err" => "",
+        "password_err" => "",
+        "confirm_password_err" => "",
+        "gender_err" => "",
+        "phone_err" => "",
+        "address_err" => ""
+      );
+
+      // Check if no error occured
+      $validated = true;
+
+      // pattern
+      $emailPattern = '/^[a-z0-9]{6,64}@[a-z0-9]{1,2}[a-z0-9\.]{1,127}(\.[a-z]{2,4})$/i';
+      $namePattern = '/^[^0-9\[\]`!@#$%^&*()_+\\{}|;\':\",.\/<>?]*$/';
+      $addressPattern = "/[^0-9\[\]`!@#$%^&*()_+\\{}|;\':\",.\/<>?]*$/";
+      $phonePattern = "/^0[1-9][0-9]{8}$/";
+
+      // Validate email
+      if (empty($data["email"])) {
+        $data["email_err"] = "Please enter email";
+        $validated = false;
+      } elseif ($this->userModel->findUserByEmail($data["email"])) {
+        $data["email_err"] = "Email is already taken";
+        $validated = false;
+      } else {
+        if (!preg_match($emailPattern, $data["email"])) {
+          $data["email_err"] = "Email is not valid.";
+          $validated = false;
+        }
+      }
+
+      // Validate name
+      if (empty($data["firstname"])) {
+        $data["firstname_err"] = "Please enter first name";
+        $validated = false;
+      } else {
+        if (!preg_match($namePattern, $data["firstname"])) {
+          $data["firstname_err"] = "First name must not contain special characters or digits";
+          $validated = false;
+        }
+      }
+      if (empty($data["lastname"])) {
+        $data["lastname_err"] = "Please enter last name";
+        $validated = false;
+      } else {
+        if (!preg_match($namePattern, $data["lastname"])) {
+          $data["lastname_err"] = "Last name must not contain special characters or digits";
+          $validated = false;
+        }
+      }
+
+      // Validate password
+      if (empty($data["password"])) {
+        $data["password_err"] = "Please enter password";
+        $validated = false;
+      } elseif (strlen($data["password"]) < 6) {
+        $data["password_err"] = "Password must at least 6 characters";
+        $validated = false;
+      }
+
+      // Validate confirm_password
+      if (empty($data["confirm_password"])) {
+        $data["confirm_password_err"] = "Please confirm your password";
+        $validated = false;
+      } elseif ($data["password"] != $data["confirm_password"]) {
+        $data["confirm_password_err"] = "Passwords are not matched";
+        $validated = false;
+      }
+
+      // Validate phone
+      if (empty($data["phone"])) {
+        $data["phone_err"] = "Please enter your phone";
+        $validated = false;
+      } else {
+        if (!preg_match($phonePattern, $data["phone"])) {
+          $data["phone_err"] = "Phone is not valid";
+          $validated = false;
+        }
+      }
+
+      // Validate address
+      if (empty($data["address"])) {
+        $data["address_err"] = "Please enter your address";
+        $validated = false;
+      } else {
+        if (!preg_match($addressPattern, $data["address"])) {
+          $data["address_err"] = "Address is not valid";
+          $validated = false;
+        }
+      }
+
+      // Make sure no error occured
+      if ($validated) {
+        // Validated
+
+        // Hash password
+        $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+
+        // Register user
+        if ($this->userModel->adminAddUser($data)) {
+          flash("add_success", "New user added.");
+
+          // clear data fields
+          $data = array(
+            "firstname" => "",
+            "lastname" => "",
+            "email" => "",
+            "password" => "",
+            "confirm_password" => "",
+            "gender" => "male",
+            "phone" => "",
+            "address" => "",
+            "roleid" => "",
+            "role" => $roles,
+            "firstname_err" => "",
+            "lastname_err" => "",
+            "email_err" => "",
+            "password_err" => "",
+            "confirm_password_err" => "",
+            "gender_err" => "",
+            "phone_err" => "",
+            "address_err" => ""
+          );
+
+          $this->view("admins/addUser", $data);
+        } else {
+          die("Something went wrong");
+        }
+      } else {
+        // Load view
+        $this->view("admins/addUser", $data);
+      }
+    } else {
+      // Get all roles
+      $roles = $this->userModel->adminGetAllRoles();
+
+      // Init data
+      $data = array(
+        "firstname" => "",
+        "lastname" => "",
+        "email" => "",
+        "password" => "",
+        "confirm_password" => "",
+        "gender" => "male",
+        "phone" => "",
+        "address" => "",
+        "roleid" => "",
+        "roles" => $roles,
+        "firstname_err" => "",
+        "lastname_err" => "",
+        "email_err" => "",
+        "password_err" => "",
+        "confirm_password_err" => "",
+        "gender_err" => "",
+        "phone_err" => "",
+        "address_err" => ""
+      );
+
+      // Load view
+      $this->view("admins/addUser", $data);
     }
   }
 

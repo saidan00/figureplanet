@@ -41,18 +41,18 @@
           <div class="horizontal-menu">
             <nav>
               <ul id="nav_menu">
-                <li>
-                  <a href="<?php echo URLROOT; ?>/admins/products"><i class="fa fa-table"></i><span>products</span></a>
-                </li>
-                <li>
-                  <a href="<?php echo URLROOT; ?>/admins/orders"><i class="fa fa-shopping-cart"></i><span>Orders</span></a>
-                </li>
-                <li>
-                  <a href="<?php echo URLROOT; ?>/admins/users"><i class="fa fa-user-circle"></i><span>Users</span></a>
-                </li>
-                <li>
-                  <a href="<?php echo URLROOT; ?>/admins/statistics"><i class="fa fa-bar-chart"></i><span>Statistics</span></a>
-                </li>
+                <?php if (isManager()) : ?>
+                  <li>
+                    <a href="<?php echo URLROOT; ?>/admins/products"><i class="fa fa-table"></i><span>products</span></a>
+                  </li>
+                  <li>
+                    <a href="<?php echo URLROOT; ?>/admins/orders"><i class="fa fa-shopping-cart"></i><span>Orders</span></a>
+                  </li>
+                <?php elseif (isAdmin()) : ?>
+                  <li>
+                    <a href="<?php echo URLROOT; ?>/admins/users"><i class="fa fa-user-circle"></i><span>Users</span></a>
+                  </li>
+                <?php endif; ?>
               </ul>
             </nav>
           </div>
