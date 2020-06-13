@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 20, 2020 lúc 08:04 AM
--- Phiên bản máy phục vụ: 10.4.11-MariaDB
--- Phiên bản PHP: 7.4.4
+-- Host: 127.0.0.1
+-- Generation Time: Jun 13, 2020 at 04:43 AM
+-- Server version: 10.1.40-MariaDB
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,46 +19,55 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `figureplanet`
+-- Database: `figureplanet`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `HelloWorld` ()  BEGIN
+SELECT "Hello World!";
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_sku` varchar(6) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1,
-  `created_at` datetime DEFAULT current_timestamp()
+  `quantity` int(11) NOT NULL DEFAULT '1',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `carts`
+-- Dumping data for table `carts`
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_sku`, `quantity`, `created_at`) VALUES
-(18, 2, 'W3F5CB', 4, '2019-07-14 21:58:54'),
-(30, 7, '8L7D5F', 8, '2020-05-19 22:26:05');
+(18, 2, 'W3F5CB', 4, '2019-07-14 21:58:54');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
   `categoryID` int(11) NOT NULL,
   `categoryName` varchar(255) NOT NULL,
   `categoryCode` varchar(255) DEFAULT NULL,
-  `is_available` tinyint(1) NOT NULL DEFAULT 0
+  `is_available` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryCode`, `is_available`) VALUES
@@ -69,7 +79,7 @@ INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryCode`, `is_avai
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -82,28 +92,23 @@ CREATE TABLE `orders` (
   `address` varchar(255) NOT NULL,
   `payment` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'processing',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `order_code`, `user_id`, `firstname`, `lastname`, `phone`, `address`, `payment`, `status`, `created_at`) VALUES
-(7, '220190619181539', 2, 'Huy', 'Nè', '0909090909', '111 An Duong Vuong', 'cod', 'canceled', '2019-06-19 18:15:39'),
-(8, '220190619183400', 2, 'Huy', 'Nè', '0909090909', '111 An Duong Vuong', 'bank-transfer', 'success', '2019-06-19 18:34:00'),
-(9, '320190619213740', 3, 'Jay', 'SGH', '0123456789', '123456', 'cod', 'processing', '2019-06-19 21:37:40'),
-(10, '320190620191811', 3, 'Jay', 'SGH', '0123456789', '273 An Dương Vương', 'cod', 'processing', '2019-06-20 19:18:11'),
-(11, '220190620200333', 2, 'Huy', 'Nè', '0909090909', '111 An Duong Vuong', 'bank-transfer', 'processing', '2019-06-20 20:03:33'),
-(12, '220190623140929', 2, 'Huy', 'Nè', '0909090909', '111 An Duong Vuong', 'credit-card', 'processing', '2019-06-23 14:09:29'),
-(13, '620190704212631', 6, 'aliga', 'cosplayer', '0123654789', '273 An Dương Vương', 'bank-transfer', 'processing', '2019-07-04 21:26:31'),
-(14, '320190714215814', 3, 'Jay', 'SGH', '0123456789', '123456', 'credit-card', 'processing', '2019-07-14 21:58:14'),
-(15, '720200519222518', 7, 'Lê Thạc', 'Đạt', '0375779958', '382 pham van dong', 'cod', 'processing', '2020-05-19 22:25:18');
+(15, '320200612021747', 3, 'Jay', 'SGH', '0123456789', '123456', 'cod', 'processing', '2020-06-12 02:17:47'),
+(16, '620200613092612', 6, 'aliga', 'cosplayer', '0123654789', '273 An Dương Vương', 'cod', 'processing', '2020-06-13 09:26:12'),
+(17, '720200613092833', 7, 'New', 'User', '0123456789', '123 abc', 'cod', 'processing', '2020-06-13 09:28:33'),
+(18, '520200613092947', 5, 'macy', 'pine', '0999999999', '273 An Dương Vương', 'cod', 'processing', '2020-06-13 09:29:47');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -114,31 +119,28 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`order_code`, `product_sku`, `product_quantity`, `total_price`) VALUES
-('220190619181539', '8L7D5F', 2, 25),
-('220190619183400', '9BK05R', 1, 16.5),
-('220190619183400', 'DTNSJC', 2, 9.06),
-('220190619183400', 'PTEWSN', 1, 4.81),
-('220190620200333', '1VUD4Z', 1, 7),
-('220190620200333', 'WS471G', 1, 5.56),
-('220190623140929', 'VH0TMW', 4, 59.2),
-('320190619213740', '6QZ3N9', 1, 5),
-('320190620191811', 'PTEWSN', 12, 57.72),
-('320190714215814', '8L7D5F', 1, 12.5),
-('320190714215814', 'SQDVIO', 9, 140.67),
-('320190714215814', 'W3F5CB', 1, 10),
-('620190704212631', '6QZ3N9', 1, 5),
-('620190704212631', 'KV5ICZ', 1, 12.7),
-('620190704212631', 'VH0TMW', 2, 29.6),
-('720200519222518', '8L7D5F', 1, 12.5);
+('320200612021747', '54ESMD', 1, 3.611),
+('320200612021747', '8L7D5F', 1, 12.5),
+('320200612021747', 'W3F5CB', 1, 10),
+('520200613092947', '6QZ3N9', 2, 10),
+('520200613092947', 'DTNSJC', 2, 9.06),
+('520200613092947', 'PTEWSN', 1, 4.81),
+('520200613092947', 'QU89T4', 2, 14.62),
+('520200613092947', 'VWQGM6', 2, 12.58),
+('620200613092612', '8L7D5F', 2, 25),
+('620200613092612', 'SQDVIO', 5, 78.15),
+('720200613092833', 'E7YJ92', 1, 2.68),
+('720200613092833', 'Q6DYC5', 1, 6.38),
+('720200613092833', 'QTR9V0', 1, 5.56);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -146,29 +148,29 @@ CREATE TABLE `products` (
   `sku` varchar(6) NOT NULL,
   `productName` varchar(255) NOT NULL,
   `price` float DEFAULT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 0,
+  `quantity` int(11) NOT NULL DEFAULT '0',
   `categoryID` int(11) DEFAULT NULL,
   `description` varchar(2000) DEFAULT NULL,
-  `available` tinyint(1) DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `available` tinyint(1) DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `imgPath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`productID`, `sku`, `productName`, `price`, `quantity`, `categoryID`, `description`, `available`, `created_at`, `imgPath`) VALUES
-(1, '54ESMD', 'POP UP PARADE Saitama: Hero Costume Ver', 3.611, 0, 1, 'SOMEONE WHO&#39;S A HERO FOR FUN.\r\n\r\nPOP UP PARADE is a new series of figures that are easy to collect with affordable prices and releases planned just four months after preorders begin! Each figure stands around 17-18cm in height and the series features a vast selection of characters from popular anime and game series, with many more to be added soon!\r\n\r\nFrom the anime series &#34;ONE PUNCH MAN&#34; comes the hero far too powerful for any foe - Saitama! His serious expression and punching pose have been carefully recreated. The figure is the perfect size to fit any display. Be sure to add him to your collection!', 1, '2019-06-06 18:41:25', 'images/scale_figure/54ESMD/54ESMD_01.jpg'),
-(2, '8L7D5F', 'Reg', 12.5, 67, 1, 'PRESENTING A SCALE FIGURE OF REG!\r\n\r\nFrom the popular anime series \"Made in Abyss\" comes a scale figure of the innocent robot boy Reg! Careful attention has been taken to sculpting details like wear and damage. His helmet is removable.', 1, '2019-06-07 15:33:46', 'images/scale_figure/8L7D5F/8L7D5F_01.jpg'),
+(1, '54ESMD', 'POP UP PARADE Saitama: Hero Costume Ver', 3.611, 10, 1, 'SOMEONE WHO&#39;S A HERO FOR FUN.\r\n\r\nPOP UP PARADE is a new series of figures that are easy to collect with affordable prices and releases planned just four months after preorders begin! Each figure stands around 17-18cm in height and the series features a vast selection of characters from popular anime and game series, with many more to be added soon!\r\n\r\nFrom the anime series &#34;ONE PUNCH MAN&#34; comes the hero far too powerful for any foe - Saitama! His serious expression and punching pose have been carefully recreated. The figure is the perfect size to fit any display. Be sure to add him to your collection!', 1, '2019-06-06 18:41:25', 'images/scale_figure/54ESMD/54ESMD_01.jpg'),
+(2, '8L7D5F', 'Reg', 12.5, 12, 1, 'PRESENTING A SCALE FIGURE OF REG!\r\n\r\nFrom the popular anime series \"Made in Abyss\" comes a scale figure of the innocent robot boy Reg! Careful attention has been taken to sculpting details like wear and damage. His helmet is removable.', 1, '2019-06-07 15:33:46', 'images/scale_figure/8L7D5F/8L7D5F_01.jpg'),
 (3, '6QZ3N9', 'Kid the Phantom Thief', 5, 10, 2, '\"IT\'S A SHOW TIME!\"\r\n\r\nFrom the anime series \"Detective Conan\" comes a Nendoroid of Kid the Phantom Thief! He comes with two interchangeable face plates including his standard expression and his grinning expression. He can be displayed wearing his top hat using interchangeable head parts. A miniature sized top hat is also included. Optional parts include his card gun, a dove and a rose! Be sure to add him to your collection!', 1, '2019-06-07 20:15:07', 'images/nendoroid/6QZ3N9/6QZ3N9_01.jpg'),
 (4, '1VUD4Z', 'Racing Miku 2019 ver', 7, 10, 3, 'A FIGMA OF THE OFFICIAL CHARACTER OF THE 2019 HATSUNE MIKU GT PROJECT!\r\n\r\nThe 2019 edition of the official character of the 2019 Hatsune Miku GT Project, Racing Miku, is joining the figma series! This year\'s design is illustrated by Annindofu and the figma can easily be posed in the original pose from the original illustration along with various other poses! An articulated figma stand is also included, allowing for all sorts of different scenes!', 1, '2019-06-07 20:50:40', 'images/figma/1VUD4Z/1VUD4Z_01.jpg'),
-(5, 'W3F5CB', 'Kizuna AI', 10, 12, 1, 'A SCALE FIGURE BASED ON THE COVER ILLUSTRATION OF \"KIZUNA AI 1ST PHOTO BOOK AI\"!\r\n\r\nThe popular virtual YouTuber Kizuna AI has become a new scale figure based on the cover illustration of \"Kizuna AI 1st Photo Book AI\"! Her bright smile and energetic pose have been carefully recreated. The figure features a highly detailed sculpt and intricate paintwork making for a faithful recreation.\r\n\r\nHer hair\'s pink highlights and adorable heart-shaped headband have also been captured in detail. Be sure to add her to your collection!', 1, '2019-06-08 15:48:40', 'images/scale_figure/W3F5CB/W3F5CB_01.jpg'),
+(5, 'W3F5CB', 'Kizuna AI', 10, 11, 1, 'A SCALE FIGURE BASED ON THE COVER ILLUSTRATION OF \"KIZUNA AI 1ST PHOTO BOOK AI\"!\r\n\r\nThe popular virtual YouTuber Kizuna AI has become a new scale figure based on the cover illustration of \"Kizuna AI 1st Photo Book AI\"! Her bright smile and energetic pose have been carefully recreated. The figure features a highly detailed sculpt and intricate paintwork making for a faithful recreation.\r\n\r\nHer hair\'s pink highlights and adorable heart-shaped headband have also been captured in detail. Be sure to add her to your collection!', 1, '2019-06-08 15:48:40', 'images/scale_figure/W3F5CB/W3F5CB_01.jpg'),
 (6, '402HLZ', 'Archer/Gilgamesh', 13.7, 11, 1, '\"FOR A MONGREL, YOU SURE KNOW HOW TO BARK.\"\r\n\r\nFrom the popular smartphone game \"Fate/Grand Order\" comes a scale figure of Archer/Gilgamesh! The King of Heroes has been recreated based on his Third Ascension appearance in an original pose. His muscular physique, summoning circle and Noble Phantasm Ea have been recreated in outstanding detail. Be sure to add him to your collection!', 1, '2019-06-09 21:07:10', 'images/scale_figure/402HLZ/402HLZ_01.jpg'),
 (7, 'XCU3FW', 'Emilia: Tea Party Ver', 17, 10, 1, '\"LET\'S ENJOY A TEA PARTY.\"\r\n\r\nFrom the \"Re:ZERO -Starting Life in Another World-: The Heroines\' Tea Party\" event that took place at the Tree Village shop in Tokyo Solamachi in November 2017 comes a scale figure series based on the official illustration from the event. The first figure of the series is Emilia. Emilia has been recreated elegantly enjoying a tea party at the Roswaal Mansion. Her table and chair have also been captured in meticulous detail. Be sure to add her to your collection!', 1, '2019-06-09 21:16:12', 'images/scale_figure/XCU3FW/XCU3FW_01.jpg'),
 (8, '9BK05R', 'Mimori Togo', 16.5, 10, 1, '\"IT\'S THE START OF A NEW NATIONAL DEFENSE.\"\r\n\r\nFrom the original anime series \"Yuki Yuna is a Hero\" comes a scale figure of Mimori Togo! Her gentle personality has been perfectly captured as she sits atop her rifle. Her long rifle and unique hair decorations have been carefully recreated. The figures various details give it a sense of size larger than the 1/8th scale suggests. Be sure to add her to your collection!', 1, '2019-06-09 21:18:07', 'images/scale_figure/9BK05R/9BK05R_01.jpg'),
 (9, 'KV5ICZ', 'Judith', 12.7, 10, 1, '\"TRASH MUST BE CLEANED UP QUICKLY.\"\r\n\r\nFrom the smartphone simulation game featuring beautiful girls × battle mechas and serious mecha battles on a realistic physics engine, \"Iron Saga\", comes a scale figure of the high priestess of the Curia Machinery, Judith!\r\n\r\nThe costume and accessories themed around the Curia Machinery\'s hall of scriptures have been carefully based on illustrator ASK\'s original design. Her expression clearly conveys her cold and fastidious demeanor, while her outfit features plenty of detail. Be sure to add her to your collection!', 1, '2019-06-09 21:20:39', 'images/scale_figure/KV5ICZ/KV5ICZ_01.jpg'),
-(10, 'SQDVIO', 'Kumano Kai-II', 15.63, 9, 1, '\"Admiral, do you have something for me to do?\"\r\n\r\nFrom the popular browser game \"Kantai Collection -KanColle-\" comes a Wonderful Hobby Selection figure of the fourth Mogami-class Heavy Cruiser, Kumano in her Kai-II form!\r\n\r\nUsing the original illustration by Konishi as a basis, Kumano has been recreated with a level of three-dimensional detail only possible in figure form! Her rigging has been carefully sculpted and painted with a high level of gradation, contrasting beautifully with the bare skin of her thighs beneath. Her flowing hairstyle has been captured as well. Be sure to add her to your collection!', 1, '2019-06-09 21:24:14', 'images/scale_figure/SQDVIO/SQDVIO_01.jpg'),
+(10, 'SQDVIO', 'Kumano Kai-II', 15.63, 4, 1, '\"Admiral, do you have something for me to do?\"\r\n\r\nFrom the popular browser game \"Kantai Collection -KanColle-\" comes a Wonderful Hobby Selection figure of the fourth Mogami-class Heavy Cruiser, Kumano in her Kai-II form!\r\n\r\nUsing the original illustration by Konishi as a basis, Kumano has been recreated with a level of three-dimensional detail only possible in figure form! Her rigging has been carefully sculpted and painted with a high level of gradation, contrasting beautifully with the bare skin of her thighs beneath. Her flowing hairstyle has been captured as well. Be sure to add her to your collection!', 1, '2019-06-09 21:24:14', 'images/scale_figure/SQDVIO/SQDVIO_01.jpg'),
 (11, 'VH0TMW', 'Rikka Takarada', 14.8, 10, 1, '\"I don\'t understand what Gridman is...\"\r\n\r\nFrom the anime series \"SSSS.GRIDMAN\" comes a scale figure of the cool, composed and somewhat listless heroine, Rikka Takarada! She\'s been recreated in a pose looking over her shoulder with a gentle smile on her face.\r\n\r\nHer trademark long cardigan and gorgeous legs have been sculpted in meticulous detail to bring out Rikka\'s unique charm. Be sure to add her to your collection!', 1, '2019-06-09 21:25:35', 'images/scale_figure/VH0TMW/VH0TMW_01.jpg'),
 (12, 'DLF15S', 'Goblin Slayer', 3.61, 10, 1, 'The third figure in the POP UP PARADE series is Goblin Slayer!\r\n\r\nPOP UP PARADE is a new series of figures that are easy to collect with affordable prices and releases planned just four months after preorders begin! Each figure stands around 17-18cm in height and the series features a vast selection of characters from popular anime and game series, with many more to be added soon!\r\n\r\nThe third figure in the series is Goblin Slayer from the anime series \"GOBLIN SLAYER\"! The weathered appearance of his battle-worn armor has been meticulously recreated. The figure is just the right size to fit any display. Be sure to add him to your collection!', 1, '2019-06-09 21:27:06', 'images/scale_figure/DLF15S/DLF15S_01.jpg'),
 (13, 'LT8KGV', 'Racing Miku 2018 Thailand Ver', 14, 10, 1, 'Presenting the 2018 Thailand Support Ver. Of Racing Miku from the Hatsune Miku GT Project!\r\n\r\nThe 2018 Thailand Support Ver. Of Racing Miku 2018 from the Hatsune Miku GT Project is now a scale figure! Based on the design by illustrator Hiro Kanzaki, the energetic Racing Miku has been brought to life. Her costume and tanned skin are unique features of the Thailand Support Ver. Parts of her costume, sunglasses and her twintails have been recreated with translucent parts. Be sure to add her to your collection!', 1, '2019-06-09 21:27:50', 'images/scale_figure/LT8KGV/LT8KGV_01.jpg'),
@@ -223,12 +225,13 @@ INSERT INTO `products` (`productID`, `sku`, `productName`, `price`, `quantity`, 
 (62, 'QTR9V0', 'MODEROID Bakuryu-Oh', 5.56, 10, 4, 'A new plastic model kit! Transforms from Bakuryu Dragon to Bakuryu-Oh, and even God Raijin-Oh!\r\n\r\nFrom \"Matchless Raijin-Oh\" comes a plastic model kit of Bakuryu-Oh! Both the Bakuryu Dragon and Bakuryu-Oh forms can be recreated. Additionally, when combined with MODEROID Raijin-Oh (sold separately), you can recreate the God Raijin-Oh form! The kit includes runners separated into 7 colors as well as pre-painted parts, allowing the model to look amazing simply by being put together! The model is made from ABS, PS, and POM plastic. Special stand included.', 1, '2019-06-10 10:20:46', 'images/others/QTR9V0/QTR9V0_01.jpg'),
 (63, 'E7YJ92', 'MODEROID Shinkalion H5 Hayabusa', 2.68, 10, 4, 'Hatsune Miku\'s Shinkalion H5 Hayabusa now brought to life in Shinkalion Mode!\r\n\r\nFrom \"Shinkansen Henkei Robo Shinkalion\" comes a plastic model of Hatsune Miku\'s Shinkalion H5 Hayabusa! The mecha has been brought to life while preserving its unique appearance from the show. It features fully articulated joints, allowing you to recreated its Kaisatsu Sword pose!\r\n\r\nThe model kit is made of PS and ABS plastic with POM used in the joints. It features runners separated into three colors (green, white and grey). Some parts are pre-painted and decals are included, so all it takes is a simple assembly to recreate the mecha from the series.\r\n\r\nDisplay with MODEROID Shinkalion E5 Hayabusa (sold separately) to recreate the Double Kaisatsu Sword scene!\r\n\r\n*This model is meant for display in Shinkalion mode. The model cannot be transformed into Shinkansen mode.', 1, '2019-06-10 10:22:06', 'images/others/E7YJ92/E7YJ92_01.jpg');
 INSERT INTO `products` (`productID`, `sku`, `productName`, `price`, `quantity`, `categoryID`, `description`, `available`, `created_at`, `imgPath`) VALUES
-(64, 'Q6DYC5', 'MODEROID Armed Mazinkaiser Go-Valiant', 6.38, 10, 4, 'Equipped with Psycho Armor! Armed Mazinkaiser Go-Valiant!\r\n\r\nFrom the plastic model series \"MODEROID\" comes a new entry in the \"Mazinkaiser\" universe. Covered in armor, this is the Mazinkaiser Go-Valiant! The product includes Mazinkaiser and an armor parts set to equip to it. The armor parts set can also be combined to create the \"Valiant Dagger\" vehicle.\r\n\r\nThe runners are separated by color as well as pre-painted parts allowing the model to look amazing simply by being put together! The model is made from PS and ABS plastic. Extra details can be added with the included decals.\r\n\r\n*The model of Mazinkaiser i', 1, '2019-06-10 10:22:56', 'images/others/Q6DYC5/Q6DYC5_01.jpg');
+(64, 'Q6DYC5', 'MODEROID Armed Mazinkaiser Go-Valiant', 6.38, 10, 4, 'Equipped with Psycho Armor! Armed Mazinkaiser Go-Valiant!\r\n\r\nFrom the plastic model series \"MODEROID\" comes a new entry in the \"Mazinkaiser\" universe. Covered in armor, this is the Mazinkaiser Go-Valiant! The product includes Mazinkaiser and an armor parts set to equip to it. The armor parts set can also be combined to create the \"Valiant Dagger\" vehicle.\r\n\r\nThe runners are separated by color as well as pre-painted parts allowing the model to look amazing simply by being put together! The model is made from PS and ABS plastic. Extra details can be added with the included decals.\r\n\r\n*The model of Mazinkaiser i', 1, '2019-06-10 10:22:56', 'images/others/Q6DYC5/Q6DYC5_01.jpg'),
+(66, '0M462Q', 'con meo', 5, 12, 1, 'con mèo kêu mèo méo meo mèo meo, xin chào các bạn thân yêu', 1, '2020-06-12 02:15:35', 'images/scale_figure/0M462Q/0M462Q_01.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -237,19 +240,18 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `role`) VALUES
 (2, 'admin'),
 (3, 'manager'),
-(4, 'saler'),
 (1, 'user');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc đóng vai cho view `turnover_by_date`
+-- Stand-in structure for view `turnover_by_date`
 -- (See below for the actual view)
 --
 CREATE TABLE `turnover_by_date` (
@@ -262,7 +264,7 @@ CREATE TABLE `turnover_by_date` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -275,38 +277,38 @@ CREATE TABLE `users` (
   `phone` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `is_banned` tinyint(1) NOT NULL DEFAULT 0
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_banned` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `gender`, `phone`, `address`, `role_id`, `created_at`, `is_banned`) VALUES
 (2, 'huysgh94@email.com', '$2y$10$g.DhgspRgcyPGfR05iC/f.hsbnqrnOT1TZ83DNYWkmiiLfD/1.Hy.', 'Huy', 'Nè', 'male', '0909090909', '111 An Duong Vuong', 1, '2019-06-12 20:42:43', 0),
 (3, 'jaysgh94@email.com', '$2y$10$cAsYo/0jmTDiGYTNBSpA5ezaDND58R/QEjy/qnqI11Ds/MAkSf8V2', 'Jay', 'SGH', 'male', '0123456789', '123456', 2, '2019-06-14 22:27:23', 0),
-(4, 'joycechu@email.com', '$2y$10$Fi23WcptSNwqGrVzkJyO8.rZMZZvEzQkCtMi.jjIul38GnHSraKqi', 'joyce', 'chu', 'female', '0123456789', '273 An Dương Vương', 3, '2019-06-19 19:16:37', 1),
-(5, 'macypine@email.com', '$2y$10$vpDcMckx1DhMv.RTaXCUMeMKTrigTAtHVQWHsmoNS96l6SOKQpche', 'macy', 'pine', 'female', '0999999999', '273 An Dương Vương', 1, '2019-06-19 19:21:13', 0),
-(6, 'aligaa@email.com', '$2y$10$j7vLoJeDmuIfOxbltc4A0uv83gQjap5oLe7X1zebpYu1AwYuVJrw6', 'aliga', 'cosplayer', 'female', '0123654789', '273 An Dương Vương', 1, '2019-06-19 19:43:25', 0),
-(7, 'datquynhvinh1231@gmail.com', '$2y$10$E5y4GID5yaVdxGcDcZ6zsuLObzeCXsUZf8.3Wa7wcARe966WcLG3K', 'Lê Thạc', 'Đạt', 'male', '0375779958', '382 pham van dong', 2, '2020-05-12 13:28:25', 0),
-(8, 'vinhproplayer@asd.com', '$2y$10$SoKcYvcGNCmu/.BBV3Gld.LtwiH/k69SWWp6ZhhVYJKZXxyBaKZ5S', 'Nguyen', 'Vinh', 'male', '0909990111', 'quan cam', 4, '2020-05-20 11:36:18', 0);
+(4, 'joycechu@email.com', '$2y$10$Fi23WcptSNwqGrVzkJyO8.rZMZZvEzQkCtMi.jjIul38GnHSraKqi', 'joyce', 'chu', 'female', '0123456789', '273 An Dương Vương', 3, '2019-06-19 19:16:37', 0),
+(5, 'macypine@email.com', '$2y$10$7qE6h9/fzaEOuRRuS.NvaOA3T9FDw45UtOsAR2lUrZHDgk3vJ40/q', 'macy', 'pine', 'female', '0999999999', '273 An Dương Vương', 1, '2019-06-19 19:21:13', 0),
+(6, 'aligaa@email.com', '$2y$10$9t0sXCNdnqNNYwa7/roExuXvwknfTBObOzBuwpit4UHVENgg7UhEa', 'aliga', 'cosplayer', 'female', '0123654789', '273 An Dương Vương', 1, '2019-06-19 19:43:25', 0),
+(7, 'hello123@email.com', '$2y$10$pkI8PJutFspS/elvmtoIdeIwRZyXXtNv3uyJvsRBOnxxVXd97QjcW', 'New', 'User', 'female', '0123456789', '123 abc', 1, '2020-06-13 08:35:44', 0),
+(8, 'helloworld@email.com', '$2y$10$ox2dWr7UIyJzPo/yC1/Hze8i7pHl9WGInwv7jhRlzc6p7p6DomBdO', 'Manager', 'Nè', 'male', '0987654321', '123 abc', 3, '2020-06-13 08:44:18', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc cho view `turnover_by_date`
+-- Structure for view `turnover_by_date`
 --
 DROP TABLE IF EXISTS `turnover_by_date`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `turnover_by_date`  AS  select `orders`.`order_code` AS `order_code`,cast(`orders`.`created_at` as date) AS `order_date`,`order_details`.`product_quantity` AS `product_quantity`,`order_details`.`total_price` AS `total_price` from (`orders` join `order_details` on(`orders`.`order_code` = `order_details`.`order_code`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `turnover_by_date`  AS  select `orders`.`order_code` AS `order_code`,cast(`orders`.`created_at` as date) AS `order_date`,`order_details`.`product_quantity` AS `product_quantity`,`order_details`.`total_price` AS `total_price` from (`orders` join `order_details` on((`orders`.`order_code` = `order_details`.`order_code`))) ;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
@@ -314,7 +316,7 @@ ALTER TABLE `carts`
   ADD KEY `carts_fk_product_sku` (`product_sku`);
 
 --
--- Chỉ mục cho bảng `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`categoryID`),
@@ -322,7 +324,7 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `imgPath` (`categoryCode`);
 
 --
--- Chỉ mục cho bảng `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
@@ -330,13 +332,13 @@ ALTER TABLE `orders`
   ADD KEY `fk_user_id` (`user_id`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD UNIQUE KEY `uc_order_details` (`order_code`,`product_sku`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`productID`),
@@ -344,14 +346,14 @@ ALTER TABLE `products`
   ADD KEY `FK_products_category` (`categoryID`);
 
 --
--- Chỉ mục cho bảng `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `role` (`role`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -359,70 +361,70 @@ ALTER TABLE `users`
   ADD KEY `fk_role_id` (`role_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT cho bảng `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT cho bảng `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `carts`
+-- Constraints for table `carts`
 --
 ALTER TABLE `carts`
-  ADD CONSTRAINT `carts_fk_product_sku` FOREIGN KEY (`product_sku`) REFERENCES `products` (`sku`),
+  ADD CONSTRAINT `carts_fk_product_sku` FOREIGN KEY (`product_sku`) REFERENCES `products` (`SKU`),
   ADD CONSTRAINT `carts_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Các ràng buộc cho bảng `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `FK_products_category` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`);
 
 --
--- Các ràng buộc cho bảng `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
