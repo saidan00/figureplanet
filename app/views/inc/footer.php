@@ -29,25 +29,25 @@
         <ul>
           <li class="p-b-9">
             <a href="#" class="s-text7">
-              Men
+            Scale Figure
             </a>
           </li>
 
           <li class="p-b-9">
             <a href="#" class="s-text7">
-              Women
+            Nendoroid
             </a>
           </li>
 
           <li class="p-b-9">
             <a href="#" class="s-text7">
-              Dresses
+            Figma
             </a>
           </li>
 
           <li class="p-b-9">
             <a href="#" class="s-text7">
-              Sunglasses
+            Others
             </a>
           </li>
         </ul>

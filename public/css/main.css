@@ -1968,7 +1968,7 @@ li.sale-noti > a {
 */
 .pagination {
   margin-right: -6px;
-  margin-left: -6px;
+  margin-left: 30%;
 }
 
 .item-pagination {

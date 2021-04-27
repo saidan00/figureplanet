@@ -53,8 +53,8 @@
                 <label for="payment">Payment <span class="text-danger small font-weight-bold">*</span></label>
                 <div>
                   <input type="radio" name="payment" value="cod" checked> <span class="small text-secondary">COD</span><br>
-                  <input type="radio" name="payment" value="bank-transfer"> <span class="small text-secondary">Bank Transfer</span><br>
-                  <input type="radio" name="payment" value="credit-card"> <span class="small text-secondary">Credit Card</span>
+                  <input type="radio" name="payment" value="bank-transfer" disabled> <span class="small text-secondary">Bank Transfer (developing)</span><br>
+                  <input type="radio" name="payment" value="credit-card" disabled> <span class="small text-secondary">Credit Card (developing)</span>
                 </div>
                 <span class="text-danger small"><?php echo $data["payment_err"]; ?></span>
               </div>

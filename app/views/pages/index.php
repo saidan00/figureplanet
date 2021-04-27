@@ -113,7 +113,7 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?php echo URLROOT; ?>products/search/scale_figure" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?php echo URLROOT; ?>/products/search/scale_figure" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
               Scale Figure
               </a>
             </div>
@@ -125,7 +125,7 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?php echo URLROOT; ?>products/search/nendoroid" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?php echo URLROOT; ?>/products/search/nendoroid" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
               Nendoroid
               </a>
             </div>
@@ -139,7 +139,7 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?php echo URLROOT; ?>products/search/figma" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?php echo URLROOT; ?>/products/search/figma" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
               Figma
               </a>
             </div>
@@ -151,7 +151,7 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?php echo URLROOT; ?>products/search/others" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?php echo URLROOT; ?>/products/search/others" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
               Orthers
               </a>
             </div>
@@ -165,7 +165,7 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?php echo URLROOT; ?>/products" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?php echo URLROOT; ?>/products/" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
               New products
               </a>
             </div>
@@ -186,7 +186,7 @@
 
               <div class="w-size2 p-t-25">
                 <!-- Button -->
-                <a href="<?php echo URLROOT; ?>users/login" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+                <a href="<?php echo URLROOT; ?>/users/register" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" <?php if (isLoggedIn()) echo "hidden" ?>>
                   Sign Up
                 </a>
               </div>
@@ -232,7 +232,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/SQDVIO" class="block2-name dis-block s-text3 p-b-5">
                 Kumano Kai-II
                 </a>
 
@@ -265,7 +265,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/9BK05R" class="block2-name dis-block s-text3 p-b-5">
                 Mimori Togo
                 </a>
 
@@ -282,7 +282,7 @@
               <div class="block2-img wrap-pic-w of-hidden pos-relative">
                 <img src="<?php echo URLROOT; ?>/images/nendoroid/2ZDFBE/2ZDFBE_01.jpg" alt="IMG-PRODUCT">
 
-                <div class="block2-overlay trans-0-4" data-sku="<?php echo $data["products"][$i]->sku; ?>">
+                <div class="block2-overlay trans-0-4">
                   <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
                     <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
                     <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
@@ -298,7 +298,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/2ZDFBE" class="block2-name dis-block s-text3 p-b-5">
                 Ai Haibara
                 </a>
 
@@ -331,7 +331,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/402HLZ" class="block2-name dis-block s-text3 p-b-5">
                 Archer/Gilgamesh
                 </a>
 
@@ -368,7 +368,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/SQDVIO" class="block2-name dis-block s-text3 p-b-5">
                 Kumano Kai-II
                 </a>
 
@@ -401,7 +401,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/9BK05R" class="block2-name dis-block s-text3 p-b-5">
                 Mimori Togo
                 </a>
 
@@ -434,7 +434,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/2ZDFBE" class="block2-name dis-block s-text3 p-b-5">
                 Ai Haibara
                 </a>
 
@@ -467,7 +467,7 @@
               </div>
 
               <div class="block2-txt p-t-20">
-                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                <a href="<?php echo URLROOT; ?>/products/product/402HLZ" class="block2-name dis-block s-text3 p-b-5">
                 Archer/Gilgamesh
                 </a>
 
